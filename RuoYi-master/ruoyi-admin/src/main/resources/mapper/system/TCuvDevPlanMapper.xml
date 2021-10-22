@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="TCuvDevPlan" id="TCuvDevPlanResult">
         <result property="planId"    column="plan_id"    />
-        <result property="chanceId"    column="chance_id"    />
+        <result property="planName"    column="plan_name"    />
         <result property="planItem"    column="plan_item"    />
         <result property="planTime"    column="plan_time"    />
         <result property="exeAffect"    column="exe_affect"    />
@@ -16,13 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectTCuvDevPlanVo">
-        select plan_id, chance_id, plan_item, plan_time, exe_affect, is_valid, create_time, update_time from t_cuv_dev_plan
+        select plan_id, plan_name, plan_item, plan_time, exe_affect, is_valid, create_time, update_time from t_cuv_dev_plan
     </sql>
 
     <select id="selectTCuvDevPlanList" parameterType="TCuvDevPlan" resultMap="TCuvDevPlanResult">
         <include refid="selectTCuvDevPlanVo"/>
         <where>  
-            <if test="chanceId != null "> and chance_id = #{chanceId}</if>
+            <if test="planName != null  and planName != ''"> and plan_name like concat('%', #{planName}, '%')</if>
             <if test="planItem != null  and planItem != ''"> and plan_item = #{planItem}</if>
             <if test="planTime != null "> and plan_time = #{planTime}</if>
             <if test="exeAffect != null  and exeAffect != ''"> and exe_affect = #{exeAffect}</if>
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertTCuvDevPlan" parameterType="TCuvDevPlan" useGeneratedKeys="true" keyProperty="planId">
         insert into t_cuv_dev_plan
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="chanceId != null">chance_id,</if>
+            <if test="planName != null and planName != ''">plan_name,</if>
             <if test="planItem != null and planItem != ''">plan_item,</if>
             <if test="planTime != null">plan_time,</if>
             <if test="exeAffect != null">exe_affect,</if>
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="chanceId != null">#{chanceId},</if>
+            <if test="planName != null and planName != ''">#{planName},</if>
             <if test="planItem != null and planItem != ''">#{planItem},</if>
             <if test="planTime != null">#{planTime},</if>
             <if test="exeAffect != null">#{exeAffect},</if>
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateTCuvDevPlan" parameterType="TCuvDevPlan">
         update t_cuv_dev_plan
         <trim prefix="SET" suffixOverrides=",">
-            <if test="chanceId != null">chance_id = #{chanceId},</if>
+            <if test="planName != null and planName != ''">plan_name = #{planName},</if>
             <if test="planItem != null and planItem != ''">plan_item = #{planItem},</if>
             <if test="planTime != null">plan_time = #{planTime},</if>
             <if test="exeAffect != null">exe_affect = #{exeAffect},</if>

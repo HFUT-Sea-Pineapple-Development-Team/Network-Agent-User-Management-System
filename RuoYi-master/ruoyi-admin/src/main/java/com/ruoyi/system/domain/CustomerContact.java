@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 查看客户联系人对象 customer_contact
  * 
  * @author ruoyi
- * @date 2021-10-21
+ * @date 2021-10-22
  */
 public class CustomerContact extends BaseEntity
 {
@@ -44,10 +44,6 @@ public class CustomerContact extends BaseEntity
     /** 联系方式 */
     @Excel(name = "联系方式")
     private String contactStyle;
-
-    /** 是否有效 */
-    @Excel(name = "是否有效")
-    private String isValid;
 
     /** 创建时间 */
     private Date createDate;
@@ -118,15 +114,6 @@ public class CustomerContact extends BaseEntity
     {
         return contactStyle;
     }
-    public void setIsValid(String isValid) 
-    {
-        this.isValid = isValid;
-    }
-
-    public String getIsValid() 
-    {
-        return isValid;
-    }
     public void setCreateDate(Date createDate) 
     {
         this.createDate = createDate;
@@ -156,7 +143,6 @@ public class CustomerContact extends BaseEntity
             .append("overview", getOverview())
             .append("description", getDescription())
             .append("contactStyle", getContactStyle())
-            .append("isValid", getIsValid())
             .append("createDate", getCreateDate())
             .append("updateDate", getUpdateDate())
             .toString();

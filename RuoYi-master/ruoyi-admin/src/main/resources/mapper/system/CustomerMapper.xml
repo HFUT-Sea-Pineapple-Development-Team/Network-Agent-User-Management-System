@@ -41,8 +41,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userLevel != null  and userLevel != ''"> and user_level = #{userLevel}</if>
             <if test="userFinal != null "> and user_final = #{userFinal}</if>
             <if test="userSatisfaction != null "> and user_satisfaction = #{userSatisfaction}</if>
-            <if test="userTime != null "> and user_time = #{userTime}</if>
-            <if test="userFlow != null "> and user_flow = #{userFlow}</if>
         </where>
     </select>
     
@@ -60,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userSex != null and userSex != ''">user_sex,</if>
             <if test="userPhone != null and userPhone != ''">user_phone,</if>
             <if test="userEmail != null and userEmail != ''">user_email,</if>
-            <if test="userArea != null">user_area,</if>
+            <if test="userArea != null and userArea != ''">user_area,</if>
             <if test="userLevel != null">user_level,</if>
             <if test="userFinal != null">user_final,</if>
             <if test="userSatisfaction != null">user_satisfaction,</if>
@@ -77,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userSex != null and userSex != ''">#{userSex},</if>
             <if test="userPhone != null and userPhone != ''">#{userPhone},</if>
             <if test="userEmail != null and userEmail != ''">#{userEmail},</if>
-            <if test="userArea != null">#{userArea},</if>
+            <if test="userArea != null and userArea != ''">#{userArea},</if>
             <if test="userLevel != null">#{userLevel},</if>
             <if test="userFinal != null">#{userFinal},</if>
             <if test="userSatisfaction != null">#{userSatisfaction},</if>
@@ -98,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userSex != null and userSex != ''">user_sex = #{userSex},</if>
             <if test="userPhone != null and userPhone != ''">user_phone = #{userPhone},</if>
             <if test="userEmail != null and userEmail != ''">user_email = #{userEmail},</if>
-            <if test="userArea != null">user_area = #{userArea},</if>
+            <if test="userArea != null and userArea != ''">user_area = #{userArea},</if>
             <if test="userLevel != null">user_level = #{userLevel},</if>
             <if test="userFinal != null">user_final = #{userFinal},</if>
             <if test="userSatisfaction != null">user_satisfaction = #{userSatisfaction},</if>
@@ -123,8 +121,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
     
     <select id="selectAll" resultMap="CustomerResult">
-    	select *
-    	from customer
+        select * from customer
     </select>
 
 </mapper>

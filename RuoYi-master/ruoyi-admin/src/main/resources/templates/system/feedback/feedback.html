@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('查看客户联系人列表')" />
+    <th:block th:include="include :: header('客户反馈列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,20 +11,26 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>客服姓名：</label>
-                                <input type="text" name="contactName"/>
-                            </li>
-                            <li>
-                                <label>用户id：</label>
+                                <label>客户id：</label>
                                 <input type="text" name="cusId"/>
                             </li>
                             <li>
-                                <label>联系时间：</label>
-                                <input type="text" class="time-input" placeholder="请选择联系时间" name="contactTime"/>
+                                <label>满意度：</label>
+                                <select name="cusSatisfact" th:with="type=${@dict.getType('sys_satis_degree')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
-                                <label>联系方式：</label>
-                                <select name="contactStyle" th:with="type=${@dict.getType('sys_contact_inform')}">
+                                <label>反馈类型：</label>
+                                <select name="feedbackType" th:with="type=${@dict.getType('sys_feedback_type')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>有效状态：</label>
+                                <select name="isValid" th:with="type=${@dict.getType('sys_valid_status')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
@@ -39,16 +45,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:contact:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:feedback:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:contact:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:feedback:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:contact:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:feedback:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:contact:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:feedback:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
             </div>
@@ -59,10 +65,12 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('system:contact:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('system:contact:remove')}]];
-        var contactStyleDatas = [[${@dict.getType('sys_contact_inform')}]];
-        var prefix = ctx + "system/contact";
+        var editFlag = [[${@permission.hasPermi('system:feedback:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:feedback:remove')}]];
+        var cusSatisfactDatas = [[${@dict.getType('sys_satis_degree')}]];
+        var feedbackTypeDatas = [[${@dict.getType('sys_feedback_type')}]];
+        var isValidDatas = [[${@dict.getType('sys_valid_status')}]];
+        var prefix = ctx + "system/feedback";
 
         $(function() {
             var options = {
@@ -71,7 +79,7 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "查看客户联系人",
+                modalName: "客户反馈",
                 columns: [{
                     checkbox: true
                 },
@@ -81,30 +89,32 @@
                     visible: false
                 },
                 {
-                    field: 'contactName',
-                    title: '客服姓名'
-                },
-                {
                     field: 'cusId',
-                    title: '用户id'
+                    title: '客户id'
                 },
                 {
-                    field: 'contactTime',
-                    title: '联系时间'
-                },
-                {
-                    field: 'overview',
-                    title: '概要'
-                },
-                {
-                    field: 'description',
-                    title: '描述'
-                },
-                {
-                    field: 'contactStyle',
-                    title: '联系方式',
+                    field: 'cusSatisfact',
+                    title: '满意度',
                     formatter: function(value, row, index) {
-                       return $.table.selectDictLabel(contactStyleDatas, value);
+                       return $.table.selectDictLabel(cusSatisfactDatas, value);
+                    }
+                },
+                {
+                    field: 'feedbackType',
+                    title: '反馈类型',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(feedbackTypeDatas, value);
+                    }
+                },
+                {
+                    field: 'detailDes',
+                    title: '详细描述'
+                },
+                {
+                    field: 'isValid',
+                    title: '有效状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isValidDatas, value);
                     }
                 },
                 {

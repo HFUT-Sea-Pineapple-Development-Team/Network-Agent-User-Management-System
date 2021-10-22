@@ -11,10 +11,6 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>详情id：</label>
-                                <input type="text" name="id"/>
-                            </li>
-                            <li>
                                 <label>订单id：</label>
                                 <input type="text" name="orderId"/>
                             </li>
@@ -31,23 +27,18 @@
                             </li>
                             <li>
                                 <label>是否有效：</label>
-                                <input type="text" name="isValid"/>
+                                <select name="isValid" th:with="type=${@dict.getType('sys_valid_status')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <label>数量：</label>
                                 <input type="text" name="number"/>
                             </li>
                             <li>
-                                <label>剩余流量：</label>
-                                <input type="text" name="resFlow"/>
-                            </li>
-                            <li>
                                 <label>总价：</label>
                                 <input type="text" name="total"/>
-                            </li>
-                            <li>
-                                <label>剩余时间：</label>
-                                <input type="text" name="resTime"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -82,6 +73,7 @@
         var editFlag = [[${@permission.hasPermi('system:details:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:details:remove')}]];
         var serviceTypeDatas = [[${@dict.getType('sys_service_type')}]];
+        var isValidDatas = [[${@dict.getType('sys_valid_status')}]];
         var prefix = ctx + "system/details";
 
         $(function() {
@@ -116,24 +108,27 @@
                     title: '价格'
                 },
                 {
-                    field: 'isValid',
-                    title: '是否有效'
-                },
-                {
                     field: 'number',
                     title: '数量'
-                },
-                {
-                    field: 'resFlow',
-                    title: '剩余流量'
                 },
                 {
                     field: 'total',
                     title: '总价'
                 },
                 {
+                    field: 'resFlow',
+                    title: '剩余流量'
+                },
+                {
                     field: 'resTime',
                     title: '剩余时间'
+                },
+                {
+                    field: 'isValid',
+                    title: '是否有效',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isValidDatas, value);
+                    }
                 },
                 {
                     title: '操作',
