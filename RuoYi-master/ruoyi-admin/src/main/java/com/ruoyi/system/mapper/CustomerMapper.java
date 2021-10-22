@@ -58,4 +58,6 @@ public interface CustomerMapper
      * @return 结果
      */
     public int deleteCustomerByIds(String[] ids);
+    
+    List<Customer> selectAll();
 }

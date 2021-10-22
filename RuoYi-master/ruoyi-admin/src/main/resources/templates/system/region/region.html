@@ -27,6 +27,7 @@
         <script type="text/javascript" th:src="@{/js/plugins/echarts/bmap.min.js}"></script>
      
 
+		<th:block th:include="include :: footer" />
         <script type="text/javascript">
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
@@ -36,39 +37,40 @@ var option;
 
 
 
-const data = [
+var prefix = ctx + "system/customer";
+var data = [
 
-   { name: '西藏', value: 24 },
-   { name: '上海', value: 202 },
-   { name: '福建', value: 29 },
-   { name: '广西', value: 37 },
-   { name: '广东', value: 168 },
-   { name: '山西', value: 39 },
-   { name: '云南', value: 39 },
-   { name: '海南', value: 44 },
-   { name: '辽宁', value: 50 },
-   { name: '吉林', value: 51 },
-   { name: '宁夏', value: 52 },
-   { name: '江西', value: 54 },
-   { name: '青海', value: 57 },
-   { name: '内蒙古', value: 58 },
-   { name: '四川', value: 58 },
-   { name: '陕西', value: 61 },
-   { name: '江苏', value: 149 },
-   { name: '贵州', value: 71 },
-   { name: '北京', value: 79 },
-   { name: '新疆', value: 84 },
-   { name: '浙江', value: 144 },
-   { name: '山东', value: 92 },
-   { name: '重庆', value: 95 },
-   { name: '甘肃', value: 99 },
-   { name: '天津', value: 105 },
-   { name: '河南', value: 153 },
-   { name: '黑龙江', value: 114 },
-   { name: '河北', value: 147 },
-   { name: '湖南', value: 70 },
-   { name: '安徽', value: 249 },
-   { name: '湖北', value: 50 },
+  { name: '西藏', value: 0 },
+  { name: '上海', value: 0 },
+  { name: '福建', value: 0 },
+  { name: '广西', value: 0 },
+  { name: '广东', value: 0 },
+  { name: '山西', value: 0 },
+  { name: '云南', value: 0 },
+  { name: '海南', value: 0 },
+  { name: '辽宁', value: 0 },
+  { name: '吉林', value: 0 },
+  { name: '宁夏', value: 0 },
+  { name: '江西', value: 0 },
+  { name: '青海', value: 0 },
+  { name: '内蒙古', value: 0 },
+  { name: '四川', value: 0 },
+  { name: '陕西', value: 0 },
+  { name: '江苏', value: 0 },
+  { name: '贵州', value: 0 },
+  { name: '北京', value: 0 },
+  { name: '新疆', value: 0 },
+  { name: '浙江', value: 0 },
+  { name: '山东', value: 0 },
+  { name: '重庆', value: 0 },
+  { name: '甘肃', value: 0 },
+  { name: '天津', value: 0 },
+  { name: '河南', value: 0 },
+  { name: '黑龙江', value: 0 },
+  { name: '河北', value: 0 },
+  { name: '湖南', value: 0 },
+  { name: '安徽', value: 0 },
+  { name: '湖北', value: 0 },
 ];
 const geoCoordMap = {
   西藏: [91.11, 29.97],
@@ -103,6 +105,81 @@ const geoCoordMap = {
   安徽: [117.27, 31.46],
   湖北: [114.31, 30.52],
 };
+
+$.ajax({
+    url: prefix+"/getData",   		//向后端请求数据
+    dataType: 'json',
+    type: 'post',
+    success:function (datanum) {
+        // alert(JSON.stringify(data));
+        var len = datanum.length;
+        for (var i = 0; i < len; i++) {
+			if (datanum[i].user_area == '29')
+				data[0].value = data[0].value + 1;
+			if (datanum[i].user_area == '23')
+				data[1].value = data[1].value + 1;
+			if (datanum[i].user_area == '04')
+				data[2].value = data[2].value + 1;
+			if (datanum[i].user_area == '07')
+				data[3].value = data[3].value + 1;
+			if (datanum[i].user_area == '06')
+				data[4].value = data[4].value + 1;
+			if (datanum[i].user_area == '24')
+				data[5].value = data[5].value + 1;
+			if (datanum[i].user_area == '31')
+				data[6].value = data[6].value + 1;
+			if (datanum[i].user_area == '09')
+				data[7].value = data[7].value + 1;
+			if (datanum[i].user_area == '18')
+				data[8].value = data[8].value + 1;
+			if (datanum[i].user_area == '17')
+				data[9].value = data[9].value + 1;
+			if (datanum[i].user_area == '20')
+				data[10].value = data[10].value + 1;
+			if (datanum[i].user_area == '16')
+				data[11].value = data[11].value + 1;
+			if (datanum[i].user_area == '21')
+				data[12].value = data[12].value + 1;
+			if (datanum[i].user_area == '19')
+				data[13].value = data[13].value + 1;
+			if (datanum[i].user_area == '26')
+				data[14].value = data[14].value + 1;
+			if (datanum[i].user_area == '25')
+				data[15].value = data[15].value + 1;
+			if (datanum[i].user_area == '15')
+				data[16].value = data[16].value + 1;
+			if (datanum[i].user_area == '08')
+				data[17].value = data[5].value + 1;
+			if (datanum[i].user_area == '02')
+				data[18].value = data[18].value + 1;
+			if (datanum[i].user_area == '30')
+				data[19].value = data[19].value + 1;
+			if (datanum[i].user_area == '32')
+				data[20].value = data[20].value + 1;
+			if (datanum[i].user_area == '22')
+				data[21].value = data[21].value + 1;
+			if (datanum[i].user_area == '03')
+				data[22].value = data[22].value + 1;
+			if (datanum[i].user_area == '05')
+				data[23].value = data[23].value + 1;
+			if (datanum[i].user_area == '27')
+				data[24].value = data[24].value + 1;
+			if (datanum[i].user_area == '12')
+				data[25].value = data[25].value + 1;
+			if (datanum[i].user_area == '11')
+				data[26].value = data[26].value + 1;
+			if (datanum[i].user_area == '10')
+				data[27].value = data[27].value + 1;
+			if (datanum[i].user_area == '14')
+				data[28].value = data[28].value + 1;
+			if (datanum[i].user_area == '00')
+				data[29].value = data[29].value + 1;
+			if (datanum[i].user_area == '13')
+				data[30].value = data[30].value + 1;
+        }
+	}
+	
+})
 const convertData = function (data) {
   var res = [];
   for (var i = 0; i < data.length; i++) {

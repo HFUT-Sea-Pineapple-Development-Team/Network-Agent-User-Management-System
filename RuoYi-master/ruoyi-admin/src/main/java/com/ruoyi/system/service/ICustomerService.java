@@ -58,4 +58,6 @@ public interface ICustomerService
      * @return 结果
      */
     public int deleteCustomerById(Long id);
+    
+    List<Customer> selectAll();
 }
