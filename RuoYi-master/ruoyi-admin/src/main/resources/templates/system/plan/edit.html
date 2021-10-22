@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改客户开发计划')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-plan-edit" th:object="${tCuvDevPlan}">
+            <input name="planId" th:field="*{planId}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">机会id：</label>
+                <div class="col-sm-8">
+                    <input name="chanceId" th:field="*{chanceId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">计划内容：</label>
+                <div class="col-sm-8">
+                    <textarea name="planItem" class="form-control" required>[[*{planItem}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">计划时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="planTime" th:value="${#dates.format(tCuvDevPlan.planTime, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">执行效果：</label>
+                <div class="col-sm-8">
+                    <textarea name="exeAffect" class="form-control">[[*{exeAffect}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">有效状态：</label>
+                <div class="col-sm-8">
+                    <input name="isValid" th:field="*{isValid}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/plan";
+        $("#form-plan-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-plan-edit').serialize());
+            }
+        }
+
+        $("input[name='planTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

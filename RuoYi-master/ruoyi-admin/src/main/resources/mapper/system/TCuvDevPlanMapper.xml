@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TCuvDevPlanMapper">
+    
+    <resultMap type="TCuvDevPlan" id="TCuvDevPlanResult">
+        <result property="planId"    column="plan_id"    />
+        <result property="chanceId"    column="chance_id"    />
+        <result property="planItem"    column="plan_item"    />
+        <result property="planTime"    column="plan_time"    />
+        <result property="exeAffect"    column="exe_affect"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTCuvDevPlanVo">
+        select plan_id, chance_id, plan_item, plan_time, exe_affect, is_valid, create_time, update_time from t_cuv_dev_plan
+    </sql>
+
+    <select id="selectTCuvDevPlanList" parameterType="TCuvDevPlan" resultMap="TCuvDevPlanResult">
+        <include refid="selectTCuvDevPlanVo"/>
+        <where>  
+            <if test="chanceId != null "> and chance_id = #{chanceId}</if>
+            <if test="planItem != null  and planItem != ''"> and plan_item = #{planItem}</if>
+            <if test="planTime != null "> and plan_time = #{planTime}</if>
+            <if test="exeAffect != null  and exeAffect != ''"> and exe_affect = #{exeAffect}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectTCuvDevPlanByPlanId" parameterType="Long" resultMap="TCuvDevPlanResult">
+        <include refid="selectTCuvDevPlanVo"/>
+        where plan_id = #{planId}
+    </select>
+        
+    <insert id="insertTCuvDevPlan" parameterType="TCuvDevPlan" useGeneratedKeys="true" keyProperty="planId">
+        insert into t_cuv_dev_plan
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chanceId != null">chance_id,</if>
+            <if test="planItem != null and planItem != ''">plan_item,</if>
+            <if test="planTime != null">plan_time,</if>
+            <if test="exeAffect != null">exe_affect,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chanceId != null">#{chanceId},</if>
+            <if test="planItem != null and planItem != ''">#{planItem},</if>
+            <if test="planTime != null">#{planTime},</if>
+            <if test="exeAffect != null">#{exeAffect},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTCuvDevPlan" parameterType="TCuvDevPlan">
+        update t_cuv_dev_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chanceId != null">chance_id = #{chanceId},</if>
+            <if test="planItem != null and planItem != ''">plan_item = #{planItem},</if>
+            <if test="planTime != null">plan_time = #{planTime},</if>
+            <if test="exeAffect != null">exe_affect = #{exeAffect},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where plan_id = #{planId}
+    </update>
+
+    <delete id="deleteTCuvDevPlanByPlanId" parameterType="Long">
+        delete from t_cuv_dev_plan where plan_id = #{planId}
+    </delete>
+
+    <delete id="deleteTCuvDevPlanByPlanIds" parameterType="String">
+        delete from t_cuv_dev_plan where plan_id in 
+        <foreach item="planId" collection="array" open="(" separator="," close=")">
+            #{planId}
+        </foreach>
+    </delete>
+
+</mapper>

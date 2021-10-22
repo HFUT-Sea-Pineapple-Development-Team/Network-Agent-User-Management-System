@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.CustomerMapper">
+    
+    <resultMap type="Customer" id="CustomerResult">
+        <result property="id"    column="id"    />
+        <result property="userNick"    column="user_nick"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userPlat"    column="user_plat"    />
+        <result property="userSex"    column="user_sex"    />
+        <result property="userPhone"    column="user_phone"    />
+        <result property="userEmail"    column="user_email"    />
+        <result property="userArea"    column="user_area"    />
+        <result property="userLevel"    column="user_level"    />
+        <result property="userFinal"    column="user_final"    />
+        <result property="userSatisfaction"    column="user_satisfaction"    />
+        <result property="userTime"    column="user_time"    />
+        <result property="userFlow"    column="user_flow"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="updateDate"    column="update_date"    />
+        <result property="isValid"    column="is_valid"    />
+    </resultMap>
+
+    <sql id="selectCustomerVo">
+        select id, user_nick, user_name, user_plat, user_sex, user_phone, user_email, user_area, user_level, user_final, user_satisfaction, user_time, user_flow, create_date, update_date, is_valid from customer
+    </sql>
+
+    <select id="selectCustomerList" parameterType="Customer" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+            <if test="userNick != null  and userNick != ''"> and user_nick = #{userNick}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userPlat != null  and userPlat != ''"> and user_plat = #{userPlat}</if>
+            <if test="userSex != null  and userSex != ''"> and user_sex = #{userSex}</if>
+            <if test="userPhone != null  and userPhone != ''"> and user_phone = #{userPhone}</if>
+            <if test="userEmail != null  and userEmail != ''"> and user_email = #{userEmail}</if>
+            <if test="userArea != null  and userArea != ''"> and user_area = #{userArea}</if>
+            <if test="userLevel != null  and userLevel != ''"> and user_level = #{userLevel}</if>
+            <if test="userFinal != null "> and user_final = #{userFinal}</if>
+            <if test="userSatisfaction != null "> and user_satisfaction = #{userSatisfaction}</if>
+            <if test="userTime != null "> and user_time = #{userTime}</if>
+            <if test="userFlow != null "> and user_flow = #{userFlow}</if>
+        </where>
+    </select>
+    
+    <select id="selectCustomerById" parameterType="Long" resultMap="CustomerResult">
+        <include refid="selectCustomerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCustomer" parameterType="Customer" useGeneratedKeys="true" keyProperty="id">
+        insert into customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userNick != null and userNick != ''">user_nick,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="userPlat != null and userPlat != ''">user_plat,</if>
+            <if test="userSex != null and userSex != ''">user_sex,</if>
+            <if test="userPhone != null and userPhone != ''">user_phone,</if>
+            <if test="userEmail != null and userEmail != ''">user_email,</if>
+            <if test="userArea != null">user_area,</if>
+            <if test="userLevel != null">user_level,</if>
+            <if test="userFinal != null">user_final,</if>
+            <if test="userSatisfaction != null">user_satisfaction,</if>
+            <if test="userTime != null">user_time,</if>
+            <if test="userFlow != null">user_flow,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="updateDate != null">update_date,</if>
+            <if test="isValid != null">is_valid,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userNick != null and userNick != ''">#{userNick},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="userPlat != null and userPlat != ''">#{userPlat},</if>
+            <if test="userSex != null and userSex != ''">#{userSex},</if>
+            <if test="userPhone != null and userPhone != ''">#{userPhone},</if>
+            <if test="userEmail != null and userEmail != ''">#{userEmail},</if>
+            <if test="userArea != null">#{userArea},</if>
+            <if test="userLevel != null">#{userLevel},</if>
+            <if test="userFinal != null">#{userFinal},</if>
+            <if test="userSatisfaction != null">#{userSatisfaction},</if>
+            <if test="userTime != null">#{userTime},</if>
+            <if test="userFlow != null">#{userFlow},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+            <if test="isValid != null">#{isValid},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCustomer" parameterType="Customer">
+        update customer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userNick != null and userNick != ''">user_nick = #{userNick},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="userPlat != null and userPlat != ''">user_plat = #{userPlat},</if>
+            <if test="userSex != null and userSex != ''">user_sex = #{userSex},</if>
+            <if test="userPhone != null and userPhone != ''">user_phone = #{userPhone},</if>
+            <if test="userEmail != null and userEmail != ''">user_email = #{userEmail},</if>
+            <if test="userArea != null">user_area = #{userArea},</if>
+            <if test="userLevel != null">user_level = #{userLevel},</if>
+            <if test="userFinal != null">user_final = #{userFinal},</if>
+            <if test="userSatisfaction != null">user_satisfaction = #{userSatisfaction},</if>
+            <if test="userTime != null">user_time = #{userTime},</if>
+            <if test="userFlow != null">user_flow = #{userFlow},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCustomerById" parameterType="Long">
+        delete from customer where id = #{id}
+    </delete>
+
+    <delete id="deleteCustomerByIds" parameterType="String">
+        delete from customer where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

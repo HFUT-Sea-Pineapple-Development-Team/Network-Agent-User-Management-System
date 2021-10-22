@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TSaleChanceMapper">
+    
+    <resultMap type="TSaleChance" id="TSaleChanceResult">
+        <result property="chanceId"    column="chance_id"    />
+        <result property="chanceSource"    column="chance_source"    />
+        <result property="cusNick"    column="cus_nick"    />
+        <result property="cusPhone"    column="cus_phone"    />
+        <result property="cusName"    column="cus_name"    />
+        <result property="isNew"    column="is_new"    />
+        <result property="isInv"    column="is_inv"    />
+        <result property="quarAndFlow"    column="quar_and_flow"    />
+        <result property="chanceLevel"    column="chance_level"    />
+        <result property="chanceResult"    column="chance_result"    />
+        <result property="title"    column="title"    />
+        <result property="description"    column="description"    />
+        <result property="createMan"    column="create_man"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTSaleChanceVo">
+        select chance_id, chance_source, cus_nick, cus_phone, cus_name, is_new, is_inv, quar_and_flow, chance_level, chance_result, title, description, create_man, is_valid, create_time, update_time from t_sale_chance
+    </sql>
+
+    <select id="selectTSaleChanceList" parameterType="TSaleChance" resultMap="TSaleChanceResult">
+        <include refid="selectTSaleChanceVo"/>
+        <where>  
+            <if test="chanceSource != null  and chanceSource != ''"> and chance_source = #{chanceSource}</if>
+            <if test="cusNick != null  and cusNick != ''"> and cus_nick = #{cusNick}</if>
+            <if test="cusPhone != null  and cusPhone != ''"> and cus_phone = #{cusPhone}</if>
+            <if test="cusName != null  and cusName != ''"> and cus_name like concat('%', #{cusName}, '%')</if>
+            <if test="isNew != null  and isNew != ''"> and is_new = #{isNew}</if>
+            <if test="isInv != null  and isInv != ''"> and is_inv = #{isInv}</if>
+            <if test="quarAndFlow != null "> and quar_and_flow = #{quarAndFlow}</if>
+            <if test="chanceLevel != null "> and chance_level = #{chanceLevel}</if>
+            <if test="chanceResult != null "> and chance_result = #{chanceResult}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="createMan != null  and createMan != ''"> and create_man = #{createMan}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectTSaleChanceByChanceId" parameterType="Long" resultMap="TSaleChanceResult">
+        <include refid="selectTSaleChanceVo"/>
+        where chance_id = #{chanceId}
+    </select>
+        
+    <insert id="insertTSaleChance" parameterType="TSaleChance" useGeneratedKeys="true" keyProperty="chanceId">
+        insert into t_sale_chance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chanceSource != null and chanceSource != ''">chance_source,</if>
+            <if test="cusNick != null">cus_nick,</if>
+            <if test="cusPhone != null and cusPhone != ''">cus_phone,</if>
+            <if test="cusName != null and cusName != ''">cus_name,</if>
+            <if test="isNew != null and isNew != ''">is_new,</if>
+            <if test="isInv != null and isInv != ''">is_inv,</if>
+            <if test="quarAndFlow != null">quar_and_flow,</if>
+            <if test="chanceLevel != null">chance_level,</if>
+            <if test="chanceResult != null">chance_result,</if>
+            <if test="title != null">title,</if>
+            <if test="description != null">description,</if>
+            <if test="createMan != null">create_man,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chanceSource != null and chanceSource != ''">#{chanceSource},</if>
+            <if test="cusNick != null">#{cusNick},</if>
+            <if test="cusPhone != null and cusPhone != ''">#{cusPhone},</if>
+            <if test="cusName != null and cusName != ''">#{cusName},</if>
+            <if test="isNew != null and isNew != ''">#{isNew},</if>
+            <if test="isInv != null and isInv != ''">#{isInv},</if>
+            <if test="quarAndFlow != null">#{quarAndFlow},</if>
+            <if test="chanceLevel != null">#{chanceLevel},</if>
+            <if test="chanceResult != null">#{chanceResult},</if>
+            <if test="title != null">#{title},</if>
+            <if test="description != null">#{description},</if>
+            <if test="createMan != null">#{createMan},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTSaleChance" parameterType="TSaleChance">
+        update t_sale_chance
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chanceSource != null and chanceSource != ''">chance_source = #{chanceSource},</if>
+            <if test="cusNick != null">cus_nick = #{cusNick},</if>
+            <if test="cusPhone != null and cusPhone != ''">cus_phone = #{cusPhone},</if>
+            <if test="cusName != null and cusName != ''">cus_name = #{cusName},</if>
+            <if test="isNew != null and isNew != ''">is_new = #{isNew},</if>
+            <if test="isInv != null and isInv != ''">is_inv = #{isInv},</if>
+            <if test="quarAndFlow != null">quar_and_flow = #{quarAndFlow},</if>
+            <if test="chanceLevel != null">chance_level = #{chanceLevel},</if>
+            <if test="chanceResult != null">chance_result = #{chanceResult},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="createMan != null">create_man = #{createMan},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where chance_id = #{chanceId}
+    </update>
+
+    <delete id="deleteTSaleChanceByChanceId" parameterType="Long">
+        delete from t_sale_chance where chance_id = #{chanceId}
+    </delete>
+
+    <delete id="deleteTSaleChanceByChanceIds" parameterType="String">
+        delete from t_sale_chance where chance_id in 
+        <foreach item="chanceId" collection="array" open="(" separator="," close=")">
+            #{chanceId}
+        </foreach>
+    </delete>
+
+</mapper>

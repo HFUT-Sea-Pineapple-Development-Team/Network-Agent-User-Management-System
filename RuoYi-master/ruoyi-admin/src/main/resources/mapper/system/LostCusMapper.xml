@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.LostCusMapper">
+    
+    <resultMap type="LostCus" id="LostCusResult">
+        <result property="id"    column="id"    />
+        <result property="lostId"    column="lost_id"    />
+        <result property="lostTime"    column="lost_time"    />
+        <result property="cusPhone"    column="cus_phone"    />
+        <result property="cusEmail"    column="cus_email"    />
+        <result property="contactTime"    column="contact_time"    />
+        <result property="confirmLoss"    column="confirm_loss"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectLostCusVo">
+        select id, lost_id, lost_time, cus_phone, cus_email, contact_time, confirm_loss, is_valid, create_time, update_time from lost_cus
+    </sql>
+
+    <select id="selectLostCusList" parameterType="LostCus" resultMap="LostCusResult">
+        <include refid="selectLostCusVo"/>
+        <where>  
+            <if test="lostId != null "> and lost_id = #{lostId}</if>
+            <if test="lostTime != null "> and lost_time = #{lostTime}</if>
+            <if test="cusPhone != null  and cusPhone != ''"> and cus_phone = #{cusPhone}</if>
+            <if test="cusEmail != null  and cusEmail != ''"> and cus_email = #{cusEmail}</if>
+            <if test="contactTime != null "> and contact_time = #{contactTime}</if>
+            <if test="confirmLoss != null  and confirmLoss != ''"> and confirm_loss = #{confirmLoss}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectLostCusById" parameterType="Long" resultMap="LostCusResult">
+        <include refid="selectLostCusVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLostCus" parameterType="LostCus" useGeneratedKeys="true" keyProperty="id">
+        insert into lost_cus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lostId != null">lost_id,</if>
+            <if test="lostTime != null">lost_time,</if>
+            <if test="cusPhone != null and cusPhone != ''">cus_phone,</if>
+            <if test="cusEmail != null and cusEmail != ''">cus_email,</if>
+            <if test="contactTime != null">contact_time,</if>
+            <if test="confirmLoss != null">confirm_loss,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lostId != null">#{lostId},</if>
+            <if test="lostTime != null">#{lostTime},</if>
+            <if test="cusPhone != null and cusPhone != ''">#{cusPhone},</if>
+            <if test="cusEmail != null and cusEmail != ''">#{cusEmail},</if>
+            <if test="contactTime != null">#{contactTime},</if>
+            <if test="confirmLoss != null">#{confirmLoss},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLostCus" parameterType="LostCus">
+        update lost_cus
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lostId != null">lost_id = #{lostId},</if>
+            <if test="lostTime != null">lost_time = #{lostTime},</if>
+            <if test="cusPhone != null and cusPhone != ''">cus_phone = #{cusPhone},</if>
+            <if test="cusEmail != null and cusEmail != ''">cus_email = #{cusEmail},</if>
+            <if test="contactTime != null">contact_time = #{contactTime},</if>
+            <if test="confirmLoss != null">confirm_loss = #{confirmLoss},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLostCusById" parameterType="Long">
+        delete from lost_cus where id = #{id}
+    </delete>
+
+    <delete id="deleteLostCusByIds" parameterType="String">
+        delete from lost_cus where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

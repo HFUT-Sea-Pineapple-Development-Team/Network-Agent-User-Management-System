@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.CustomerOrderMapper">
+    
+    <resultMap type="CustomerOrder" id="CustomerOrderResult">
+        <result property="id"    column="id"    />
+        <result property="cusId"    column="cus_id"    />
+        <result property="orderNo"    column="order_no"    />
+        <result property="orderDate"    column="order_date"    />
+        <result property="state"    column="state"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="updateDate"    column="update_date"    />
+    </resultMap>
+
+    <sql id="selectCustomerOrderVo">
+        select id, cus_id, order_no, order_date, state, is_valid, create_date, update_date from customer_order
+    </sql>
+
+    <select id="selectCustomerOrderList" parameterType="CustomerOrder" resultMap="CustomerOrderResult">
+        <include refid="selectCustomerOrderVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+            <if test="cusId != null "> and cus_id = #{cusId}</if>
+            <if test="orderNo != null  and orderNo != ''"> and order_no = #{orderNo}</if>
+            <if test="orderDate != null "> and order_date = #{orderDate}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectCustomerOrderById" parameterType="Long" resultMap="CustomerOrderResult">
+        <include refid="selectCustomerOrderVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCustomerOrder" parameterType="CustomerOrder">
+        insert into customer_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="cusId != null">cus_id,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="orderDate != null">order_date,</if>
+            <if test="state != null">state,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="updateDate != null">update_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="cusId != null">#{cusId},</if>
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="orderDate != null">#{orderDate},</if>
+            <if test="state != null">#{state},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCustomerOrder" parameterType="CustomerOrder">
+        update customer_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cusId != null">cus_id = #{cusId},</if>
+            <if test="orderNo != null">order_no = #{orderNo},</if>
+            <if test="orderDate != null">order_date = #{orderDate},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCustomerOrderById" parameterType="Long">
+        delete from customer_order where id = #{id}
+    </delete>
+
+    <delete id="deleteCustomerOrderByIds" parameterType="String">
+        delete from customer_order where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

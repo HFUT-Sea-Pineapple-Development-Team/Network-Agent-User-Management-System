@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.OrderDetailsMapper">
+    
+    <resultMap type="OrderDetails" id="OrderDetailsResult">
+        <result property="id"    column="id"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="serviceType"    column="service_type"    />
+        <result property="price"    column="price"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="number"    column="number"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="resFlow"    column="res_flow"    />
+        <result property="total"    column="total"    />
+        <result property="updateDate"    column="update_date"    />
+        <result property="resTime"    column="res_time"    />
+    </resultMap>
+
+    <sql id="selectOrderDetailsVo">
+        select id, order_id, service_type, price, is_valid, number, create_date, res_flow, total, update_date, res_time from order_details
+    </sql>
+
+    <select id="selectOrderDetailsList" parameterType="OrderDetails" resultMap="OrderDetailsResult">
+        <include refid="selectOrderDetailsVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+            <if test="orderId != null "> and order_id = #{orderId}</if>
+            <if test="serviceType != null  and serviceType != ''"> and service_type = #{serviceType}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+            <if test="number != null "> and number = #{number}</if>
+            <if test="resFlow != null "> and res_flow = #{resFlow}</if>
+            <if test="total != null "> and total = #{total}</if>
+            <if test="resTime != null "> and res_time = #{resTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectOrderDetailsById" parameterType="Long" resultMap="OrderDetailsResult">
+        <include refid="selectOrderDetailsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertOrderDetails" parameterType="OrderDetails">
+        insert into order_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="serviceType != null">service_type,</if>
+            <if test="price != null">price,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="number != null">number,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="resFlow != null">res_flow,</if>
+            <if test="total != null">total,</if>
+            <if test="updateDate != null">update_date,</if>
+            <if test="resTime != null">res_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="serviceType != null">#{serviceType},</if>
+            <if test="price != null">#{price},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="number != null">#{number},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="resFlow != null">#{resFlow},</if>
+            <if test="total != null">#{total},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+            <if test="resTime != null">#{resTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOrderDetails" parameterType="OrderDetails">
+        update order_details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="serviceType != null">service_type = #{serviceType},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="resFlow != null">res_flow = #{resFlow},</if>
+            <if test="total != null">total = #{total},</if>
+            <if test="updateDate != null">update_date = #{updateDate},</if>
+            <if test="resTime != null">res_time = #{resTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOrderDetailsById" parameterType="Long">
+        delete from order_details where id = #{id}
+    </delete>
+
+    <delete id="deleteOrderDetailsByIds" parameterType="String">
+        delete from order_details where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
