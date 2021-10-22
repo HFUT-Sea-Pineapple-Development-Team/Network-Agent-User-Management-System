@@ -91,4 +91,10 @@ public class CustomerServiceImpl implements ICustomerService
     {
         return customerMapper.deleteCustomerById(id);
     }
+    
+    @Override
+    public List<Customer> selectAll()
+    {
+        return customerMapper.selectAll();
+    }
 }

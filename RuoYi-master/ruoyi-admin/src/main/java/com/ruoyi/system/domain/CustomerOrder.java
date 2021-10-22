@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 查看订单对象 customer_order
  * 
  * @author ruoyi
- * @date 2021-10-21
+ * @date 2021-10-22
  */
 public class CustomerOrder extends BaseEntity
 {
@@ -37,10 +37,6 @@ public class CustomerOrder extends BaseEntity
     /** 订单状态 */
     @Excel(name = "订单状态")
     private Long state;
-
-    /** 是否有效 */
-    @Excel(name = "是否有效")
-    private String isValid;
 
     /** 创建时间 */
     private Date createDate;
@@ -93,15 +89,6 @@ public class CustomerOrder extends BaseEntity
     {
         return state;
     }
-    public void setIsValid(String isValid) 
-    {
-        this.isValid = isValid;
-    }
-
-    public String getIsValid() 
-    {
-        return isValid;
-    }
     public void setCreateDate(Date createDate) 
     {
         this.createDate = createDate;
@@ -129,7 +116,6 @@ public class CustomerOrder extends BaseEntity
             .append("orderNo", getOrderNo())
             .append("orderDate", getOrderDate())
             .append("state", getState())
-            .append("isValid", getIsValid())
             .append("createDate", getCreateDate())
             .append("updateDate", getUpdateDate())
             .toString();

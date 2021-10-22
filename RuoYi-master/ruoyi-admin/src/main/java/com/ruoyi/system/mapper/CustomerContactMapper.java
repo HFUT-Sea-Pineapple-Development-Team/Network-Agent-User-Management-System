@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.CustomerContact;
  * 查看客户联系人Mapper接口
  * 
  * @author ruoyi
- * @date 2021-10-21
+ * @date 2021-10-22
  */
 public interface CustomerContactMapper 
 {

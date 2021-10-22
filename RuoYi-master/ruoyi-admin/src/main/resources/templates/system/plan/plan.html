@@ -11,8 +11,8 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>机会id：</label>
-                                <input type="text" name="chanceId"/>
+                                <label>计划名称：</label>
+                                <input type="text" name="planName"/>
                             </li>
                             <li>
                                 <label>计划时间：</label>
@@ -54,6 +54,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:plan:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:plan:remove')}]];
+        var isValidDatas = [[${@dict.getType('sys_valid_status')}]];
         var prefix = ctx + "system/plan";
 
         $(function() {
@@ -70,11 +71,10 @@
                 {
                     field: 'planId',
                     title: '计划id',
-                    visible: false
                 },
                 {
-                    field: 'chanceId',
-                    title: '机会id'
+                    field: 'planName',
+                    title: '计划名称'
                 },
                 {
                     field: 'planItem',
@@ -90,7 +90,10 @@
                 },
                 {
                     field: 'isValid',
-                    title: '有效状态'
+                    title: '有效状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(isValidDatas, value);
+                    }
                 },
                 {
                     title: '操作',

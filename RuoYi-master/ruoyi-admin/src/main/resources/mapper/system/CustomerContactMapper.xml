@@ -12,13 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="overview"    column="overview"    />
         <result property="description"    column="description"    />
         <result property="contactStyle"    column="contact_style"    />
-        <result property="isValid"    column="is_valid"    />
         <result property="createDate"    column="create_date"    />
         <result property="updateDate"    column="update_date"    />
     </resultMap>
 
     <sql id="selectCustomerContactVo">
-        select id, contact_name, cus_id, contact_time, overview, description, contact_style, is_valid, create_date, update_date from customer_contact
+        select id, contact_name, cus_id, contact_time, overview, description, contact_style, create_date, update_date from customer_contact
     </sql>
 
     <select id="selectCustomerContactList" parameterType="CustomerContact" resultMap="CustomerContactResult">
@@ -28,7 +27,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cusId != null "> and cus_id = #{cusId}</if>
             <if test="contactTime != null "> and contact_time = #{contactTime}</if>
             <if test="contactStyle != null  and contactStyle != ''"> and contact_style = #{contactStyle}</if>
-            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
         </where>
     </select>
     
@@ -47,7 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="overview != null">overview,</if>
             <if test="description != null">description,</if>
             <if test="contactStyle != null">contact_style,</if>
-            <if test="isValid != null">is_valid,</if>
             <if test="createDate != null">create_date,</if>
             <if test="updateDate != null">update_date,</if>
          </trim>
@@ -59,7 +56,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="overview != null">#{overview},</if>
             <if test="description != null">#{description},</if>
             <if test="contactStyle != null">#{contactStyle},</if>
-            <if test="isValid != null">#{isValid},</if>
             <if test="createDate != null">#{createDate},</if>
             <if test="updateDate != null">#{updateDate},</if>
          </trim>
@@ -74,7 +70,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="overview != null">overview = #{overview},</if>
             <if test="description != null">description = #{description},</if>
             <if test="contactStyle != null">contact_style = #{contactStyle},</if>
-            <if test="isValid != null">is_valid = #{isValid},</if>
             <if test="createDate != null">create_date = #{createDate},</if>
             <if test="updateDate != null">update_date = #{updateDate},</if>
         </trim>

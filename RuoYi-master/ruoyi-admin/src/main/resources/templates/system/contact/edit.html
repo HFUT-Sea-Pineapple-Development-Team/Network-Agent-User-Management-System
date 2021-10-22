@@ -52,15 +52,6 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">是否有效：</label>
-                <div class="col-sm-8">
-                    <div class="radio-box" th:each="dict : ${@dict.getType('sys_valid_status')}">
-                        <input type="radio" th:id="${'isValid_' + dict.dictCode}" name="isValid" th:value="${dict.dictValue}" th:field="*{isValid}">
-                        <label th:for="${'isValid_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
     <th:block th:include="include :: footer" />

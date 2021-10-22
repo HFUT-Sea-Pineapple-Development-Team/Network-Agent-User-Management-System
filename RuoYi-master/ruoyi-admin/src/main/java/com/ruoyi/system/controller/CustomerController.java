@@ -41,6 +41,14 @@ public class CustomerController extends BaseController
         return prefix + "/customer";
     }
 
+    @GetMapping("/region")
+    public String region(ModelMap mmap)
+    {
+    	List<Customer> list = customerService.selectAll();
+    	mmap.put("regiondis",list);
+        return prefix + "/region";
+    }
+    
     /**
      * 查询查看客户信息列表
      */

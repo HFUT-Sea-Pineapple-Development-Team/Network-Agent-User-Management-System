@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TCusFeedbackMapper">
+    
+    <resultMap type="TCusFeedback" id="TCusFeedbackResult">
+        <result property="id"    column="id"    />
+        <result property="cusId"    column="cus_id"    />
+        <result property="cusSatisfact"    column="cus_satisfact"    />
+        <result property="feedbackType"    column="feedback_type"    />
+        <result property="detailDes"    column="detail_des"    />
+        <result property="isValid"    column="is_valid"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updataTime"    column="updata_time"    />
+    </resultMap>
+
+    <sql id="selectTCusFeedbackVo">
+        select id, cus_id, cus_satisfact, feedback_type, detail_des, is_valid, create_time, updata_time from t_cus_feedback
+    </sql>
+
+    <select id="selectTCusFeedbackList" parameterType="TCusFeedback" resultMap="TCusFeedbackResult">
+        <include refid="selectTCusFeedbackVo"/>
+        <where>  
+            <if test="cusId != null "> and cus_id = #{cusId}</if>
+            <if test="cusSatisfact != null  and cusSatisfact != ''"> and cus_satisfact = #{cusSatisfact}</if>
+            <if test="feedbackType != null  and feedbackType != ''"> and feedback_type = #{feedbackType}</if>
+            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectTCusFeedbackById" parameterType="Long" resultMap="TCusFeedbackResult">
+        <include refid="selectTCusFeedbackVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTCusFeedback" parameterType="TCusFeedback" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cus_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cusId != null">cus_id,</if>
+            <if test="cusSatisfact != null and cusSatisfact != ''">cus_satisfact,</if>
+            <if test="feedbackType != null and feedbackType != ''">feedback_type,</if>
+            <if test="detailDes != null">detail_des,</if>
+            <if test="isValid != null">is_valid,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updataTime != null">updata_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cusId != null">#{cusId},</if>
+            <if test="cusSatisfact != null and cusSatisfact != ''">#{cusSatisfact},</if>
+            <if test="feedbackType != null and feedbackType != ''">#{feedbackType},</if>
+            <if test="detailDes != null">#{detailDes},</if>
+            <if test="isValid != null">#{isValid},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updataTime != null">#{updataTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTCusFeedback" parameterType="TCusFeedback">
+        update t_cus_feedback
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cusId != null">cus_id = #{cusId},</if>
+            <if test="cusSatisfact != null and cusSatisfact != ''">cus_satisfact = #{cusSatisfact},</if>
+            <if test="feedbackType != null and feedbackType != ''">feedback_type = #{feedbackType},</if>
+            <if test="detailDes != null">detail_des = #{detailDes},</if>
+            <if test="isValid != null">is_valid = #{isValid},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updataTime != null">updata_time = #{updataTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTCusFeedbackById" parameterType="Long">
+        delete from t_cus_feedback where id = #{id}
+    </delete>
+
+    <delete id="deleteTCusFeedbackByIds" parameterType="String">
+        delete from t_cus_feedback where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

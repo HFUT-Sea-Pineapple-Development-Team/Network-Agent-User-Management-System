@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 客户开发计划对象 t_cuv_dev_plan
  * 
  * @author ruoyi
- * @date 2021-10-20
+ * @date 2021-10-22
  */
 public class TCuvDevPlan extends BaseEntity
 {
@@ -20,9 +20,9 @@ public class TCuvDevPlan extends BaseEntity
     /** 计划id */
     private Long planId;
 
-    /** 机会id */
-    @Excel(name = "机会id")
-    private Long chanceId;
+    /** 计划名称 */
+    @Excel(name = "计划名称")
+    private String planName;
 
     /** 计划内容 */
     @Excel(name = "计划内容")
@@ -50,14 +50,14 @@ public class TCuvDevPlan extends BaseEntity
     {
         return planId;
     }
-    public void setChanceId(Long chanceId) 
+    public void setPlanName(String planName) 
     {
-        this.chanceId = chanceId;
+        this.planName = planName;
     }
 
-    public Long getChanceId() 
+    public String getPlanName() 
     {
-        return chanceId;
+        return planName;
     }
     public void setPlanItem(String planItem) 
     {
@@ -100,7 +100,7 @@ public class TCuvDevPlan extends BaseEntity
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("planId", getPlanId())
-            .append("chanceId", getChanceId())
+            .append("planName", getPlanName())
             .append("planItem", getPlanItem())
             .append("planTime", getPlanTime())
             .append("exeAffect", getExeAffect())

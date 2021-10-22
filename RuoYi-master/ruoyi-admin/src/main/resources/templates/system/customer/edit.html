@@ -50,9 +50,9 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">地区：</label>
+                <label class="col-sm-3 control-label is-required">地区：</label>
                 <div class="col-sm-8">
-                    <select name="userArea" class="form-control m-b" th:with="type=${@dict.getType('sys_reg_dis')}">
+                    <select name="userArea" class="form-control m-b" th:with="type=${@dict.getType('sys_reg_dis')}" required>
                         <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{userArea}"></option>
                     </select>
                 </div>
