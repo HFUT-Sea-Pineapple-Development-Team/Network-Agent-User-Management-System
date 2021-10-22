@@ -101,8 +101,12 @@
         		  湖北: [114.31, 30.52],
         		};
         
-        $(function() {
-            console.log([[${regiondis}]])
+
+        
+        console.log(data)
+        const convertData = function (data) {
+        	  var res = [];
+        	  console.log([[${regiondis}]])
             var regiondis = [[${regiondis}]]
             console.log(regiondis.length)
             console.log(regiondis[0].userArea)
@@ -171,11 +175,6 @@
     				data[30].value = data[30].value + 1;
   			}
             console.log(data)
-        });
-        
-        console.log(data)
-        const convertData = function (data) {
-        	  var res = [];
         	  for (var i = 0; i < data.length; i++) {
         	    var geoCoord = geoCoordMap[data[i].name];
         	    if (geoCoord) {
@@ -188,7 +187,7 @@
         	  console.log(res)
         	  return res;
         	};
-        	
+
         	option = {
         			  backgroundColor: 'transparent', //适配深色模式
         			  title: {
