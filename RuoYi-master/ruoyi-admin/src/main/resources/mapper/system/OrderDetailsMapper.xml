@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="orderId"    column="order_id"    />
         <result property="serviceType"    column="service_type"    />
+        <result property="orderDate"    column="order_date"    />
         <result property="price"    column="price"    />
         <result property="isValid"    column="is_valid"    />
         <result property="number"    column="number"    />
@@ -19,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectOrderDetailsVo">
-        select id, order_id, service_type, price, is_valid, number, create_date, res_flow, total, update_date, res_time from order_details
+        select id, order_id, service_type, order_date, price, is_valid, number, create_date, res_flow, total, update_date, res_time from order_details
     </sql>
 
     <select id="selectOrderDetailsList" parameterType="OrderDetails" resultMap="OrderDetailsResult">
@@ -27,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
             <if test="orderId != null "> and order_id = #{orderId}</if>
             <if test="serviceType != null  and serviceType != ''"> and service_type = #{serviceType}</if>
+            <if test="orderDate != null "> and order_date = #{orderDate}</if>
             <if test="price != null "> and price = #{price}</if>
             <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
             <if test="number != null "> and number = #{number}</if>
@@ -45,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="id != null">id,</if>
             <if test="orderId != null">order_id,</if>
             <if test="serviceType != null">service_type,</if>
+            <if test="orderDate != null">order_date,</if>
             <if test="price != null">price,</if>
             <if test="isValid != null">is_valid,</if>
             <if test="number != null">number,</if>
@@ -58,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="id != null">#{id},</if>
             <if test="orderId != null">#{orderId},</if>
             <if test="serviceType != null">#{serviceType},</if>
+            <if test="orderDate != null">#{orderDate},</if>
             <if test="price != null">#{price},</if>
             <if test="isValid != null">#{isValid},</if>
             <if test="number != null">#{number},</if>
@@ -74,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="orderId != null">order_id = #{orderId},</if>
             <if test="serviceType != null">service_type = #{serviceType},</if>
+            <if test="orderDate != null">order_date = #{orderDate},</if>
             <if test="price != null">price = #{price},</if>
             <if test="isValid != null">is_valid = #{isValid},</if>
             <if test="number != null">number = #{number},</if>
@@ -96,5 +101,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+    
+    <select id="selectOrderDetailsAll" resultMap="OrderDetailsResult">
+        select customer_order.order_date,order_details.service_type
+		from lost_cus,customer,customer_order,order_details
+		where lost_cus.lost_id = customer.id and 
+		customer.id = customer_order.cus_id and 
+		customer_order.id = order_details.order_id
+    </select>
 
 </mapper>

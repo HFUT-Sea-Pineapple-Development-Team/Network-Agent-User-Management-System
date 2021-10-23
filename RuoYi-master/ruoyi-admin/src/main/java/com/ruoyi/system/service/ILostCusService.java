@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.LostCus;
  * 流失客户信息Service接口
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public interface ILostCusService 
 {
@@ -58,4 +58,6 @@ public interface ILostCusService
      * @return 结果
      */
     public int deleteLostCusById(Long id);
+    
+    List<LostCus> selectLostAll();
 }

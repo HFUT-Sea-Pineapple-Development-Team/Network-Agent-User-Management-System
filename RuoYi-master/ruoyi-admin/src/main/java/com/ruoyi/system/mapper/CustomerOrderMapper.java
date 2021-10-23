@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.CustomerOrder;
  * 查看订单Mapper接口
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public interface CustomerOrderMapper 
 {

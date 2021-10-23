@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.OrderDetails;
  * 订单详情Service接口
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public interface IOrderDetailsService 
 {
@@ -58,4 +58,6 @@ public interface IOrderDetailsService
      * @return 结果
      */
     public int deleteOrderDetailsById(Long id);
+    
+    List<OrderDetails> selectOrderDetailsAll();
 }

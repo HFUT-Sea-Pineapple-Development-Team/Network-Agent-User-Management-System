@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html style="height: 100%" lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<meta charset="utf-8">
+    <th:block th:include="include :: header('订单详情列表')" />
+</head>
+<body style="height: 100%; margin: 0">
+	<div id="container" style="height: 100%"></div>
+	<script type="text/javascript" th:src="@{/js/plugins/echarts/echarts.min.js}"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/extension/bmap.min.js"></script>
+        -->
+
+		<th:block th:include="include :: footer" />
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+        var prefix = ctx + "system/details";
+
+        $(function() {
+
+            var analysisdis = [[${analysisdis}]]
+
+        });
+
+        var datatime[8][12] = {0};
+        
+        for (var i = 0; i < analysisdis.length; i++) {
+        	if (analysisdis[i].serviceType == "00"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[0][0] = datatime[0][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[0][1] = datatime[0][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[0][2] = datatime[0][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[0][3] = datatime[0][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[0][4] = datatime[0][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[0][5] = datatime[0][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[0][6] = datatime[0][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[0][7] = datatime[0][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[0][8] = datatime[0][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[0][9] = datatime[0][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[0][10] = datatime[0][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[0][11] = datatime[0][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "01"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[1][0] = datatime[1][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[1][1] = datatime[1][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[1][2] = datatime[1][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[1][3] = datatime[1][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[1][4] = datatime[1][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[1][5] = datatime[1][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[1][6] = datatime[1][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[1][7] = datatime[1][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[1][8] = datatime[1][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[1][9] = datatime[1][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[1][10] = datatime[1][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[1][11] = datatime[1][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "02"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[2][0] = datatime[2][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[2][1] = datatime[2][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[2][2] = datatime[2][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[2][3] = datatime[2][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[2][4] = datatime[2][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[2][5] = datatime[2][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[2][6] = datatime[2][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[2][7] = datatime[2][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[2][8] = datatime[2][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[2][9] = datatime[2][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[2][10] = datatime[2][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[2][11] = datatime[2][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "03"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[3][0] = datatime[3][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[3][1] = datatime[3][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[3][2] = datatime[3][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[3][3] = datatime[3][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[3][4] = datatime[3][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[3][5] = datatime[3][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[3][6] = datatime[3][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[3][7] = datatime[3][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[3][8] = datatime[3][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[3][9] = datatime[3][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[3][10] = datatime[3][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[3][11] = datatime[3][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "00"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[4][0] = datatime[4][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[4][1] = datatime[4][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[4][2] = datatime[4][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[4][3] = datatime[4][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[4][4] = datatime[4][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[4][5] = datatime[4][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[4][6] = datatime[4][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[4][7] = datatime[4][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[4][8] = datatime[4][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[4][9] = datatime[4][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[4][10] = datatime[4][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[4][11] = datatime[][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "05"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[5][0] = datatime[5][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[5][1] = datatime[5][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[5][2] = datatime[5][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[5][3] = datatime[5][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[5][4] = datatime[5][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[5][5] = datatime[5][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[5][6] = datatime[5][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[5][7] = datatime[5][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[5][8] = datatime[5][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[5][9] = datatime[5][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[5][10] = datatime[5][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[5][11] = datatime[5][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "06"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[6][0] = datatime[6][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[6][1] = datatime[6][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[6][2] = datatime[6][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[6][3] = datatime[6][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[6][4] = datatime[6][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[6][5] = datatime[6][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[6][6] = datatime[6][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[6][7] = datatime[6][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[6][8] = datatime[6][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[6][9] = datatime[6][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[6][10] = datatime[6][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[6][11] = datatime[6][11] + 1;
+        		}
+        	}
+        	if (analysisdis[i].serviceType == "07"){
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "01"){
+        			datatime[7][0] = datatime[7][0] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "02"){
+        			datatime[7][1] = datatime[7][1] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "03"){
+        			datatime[7][2] = datatime[7][2] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "04"){
+        			datatime[7][3] = datatime[7][3] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "05"){
+        			datatime[7][4] = datatime[7][4] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "06"){
+        			datatime[7][5] = datatime[7][5] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "07"){
+        			datatime[7][6] = datatime[7][6] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "08"){
+        			datatime[7][7] = datatime[7][7] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "09"){
+        			datatime[7][8] = datatime[7][8] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "10"){
+        			datatime[7][9] = datatime[7][9] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "11"){
+        			datatime[7][10] = datatime[7][10] + 1;
+        		}
+        		if (analysisdis[i].orderDate[5]+analysisdis[i].orderDate[6] == "12"){
+        			datatime[7][11] = datatime[7][11] + 1;
+        		}
+        	}
+        }
+        option = {
+        		  title: {
+        		    text: '客户流失情况'
+        		  },
+        		  tooltip: {
+        		    trigger: 'axis'
+        		  },
+        		  legend: {
+        		    data: ['Monthly', 'Quarterly', 'HalfYearly','Yearly', '100G', '500G','1000G','5000G']
+        		  },
+        		  grid: {
+        		    left: '3%',
+        		    right: '4%',
+        		    bottom: '3%',
+        		    containLabel: true
+        		  },
+        		  toolbox: {
+        		    feature: {
+        		      saveAsImage: {}
+        		    }
+        		  },
+        		  xAxis: {
+        		    type: 'category',
+        		    boundaryGap: false,
+        		    data: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct','Nov','Dec']
+        		  },
+        		  yAxis: {
+        		    type: 'value'
+        		  },
+        		  series: [
+        		    {
+        		      name: 'Monthly',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[0][0], data[0][1], data[0][2], data[0][3],data[0][4], data[0][5],
+        		    	  data[0][6], data[0][7],data[0][8], data[0][9],data[0][10], data[0][11]]
+        		    },
+        		    {
+        		      name: 'Quarterly',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[1][0], data[1][1], data[1][2], data[1][3],data[1][4], data[1][5],
+        		    	  data[1][6], data[1][7],data[1][8], data[1][9],data[1][10], data[1][11]]
+        		    },
+        		    {
+          		      name: 'HalfYearly',
+          		      type: 'line',
+          		      stack: 'Total',
+          		      data: [data[2][0], data[2][1], data[2][2], data[2][3],data[2][4], data[2][5],
+        		    	  data[2][6], data[2][7],data[2][8], data[2][9],data[2][10], data[2][11]]
+          		    },
+        		    {
+        		      name: 'Yearly',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[3][0], data[3][1], data[3][2], data[3][3],data[3][4], data[3][5],
+        		    	  data[3][6], data[3][7],data[3][8], data[3][9],data[3][10], data[3][11]]
+        		    },
+        		    {
+        		      name: '100G',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[4][0], data[4][1], data[4][2], data[4][3],data[4][4], data[4][5],
+        		    	  data[4][6], data[4][7],data[4][8], data[4][9],data[4][10], data[4][11]]
+        		    },
+        		    {
+        		      name: '500G',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[5][0], data[5][1], data[5][2], data[5][3],data[5][4], data[5][5],
+        		    	  data[5][6], data[5][7],data[5][8], data[5][9],data[5][10], data[5][11]]
+        		    },
+        		    {
+        		      name: '1000G',
+        		      type: 'line',
+        		      stack: 'Total',
+        		      data: [data[6][0], data[6][1], data[6][2], data[6][3],data[6][4], data[6][5],
+        		    	  data[6][6], data[6][7],data[6][8], data[6][9],data[6][10], data[6][11]]
+        		    },
+        		    {
+          		      name: '5000G',
+          		      type: 'line',
+          		      stack: 'Total',
+          		    data: [data[7][0], data[7][1], data[7][2], data[7][3],data[7][4], data[7][5],
+      		    	  data[7][6], data[7][7],data[7][8], data[7][9],data[7][10], data[7][11]]
+          		    },
+        		    
+        		    
+        		  ]
+        		};
+
+        		if (option && typeof option === 'object') {
+        		    myChart.setOption(option);
+        		}
+    </script>
+</body>
+</html>

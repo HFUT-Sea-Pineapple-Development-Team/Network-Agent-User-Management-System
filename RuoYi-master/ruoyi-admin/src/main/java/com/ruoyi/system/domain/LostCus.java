@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 流失客户信息对象 lost_cus
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public class LostCus extends BaseEntity
 {
@@ -41,10 +41,6 @@ public class LostCus extends BaseEntity
     /** 确认流失 */
     @Excel(name = "确认流失")
     private String confirmLoss;
-
-    /** 有效状态 */
-    @Excel(name = "有效状态")
-    private String isValid;
 
     public void setId(Long id) 
     {
@@ -109,15 +105,6 @@ public class LostCus extends BaseEntity
     {
         return confirmLoss;
     }
-    public void setIsValid(String isValid) 
-    {
-        this.isValid = isValid;
-    }
-
-    public String getIsValid() 
-    {
-        return isValid;
-    }
 
     @Override
     public String toString() {
@@ -129,7 +116,6 @@ public class LostCus extends BaseEntity
             .append("cusEmail", getCusEmail())
             .append("contactTime", getContactTime())
             .append("confirmLoss", getConfirmLoss())
-            .append("isValid", getIsValid())
             .append("createTime", getCreateTime())
             .append("updateTime", getUpdateTime())
             .toString();

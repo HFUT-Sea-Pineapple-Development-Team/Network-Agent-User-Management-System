@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.OrderDetails;
  * 订单详情Mapper接口
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public interface OrderDetailsMapper 
 {
@@ -58,4 +58,6 @@ public interface OrderDetailsMapper
      * @return 结果
      */
     public int deleteOrderDetailsByIds(String[] ids);
+    
+    List<OrderDetails> selectOrderDetailsAll();
 }

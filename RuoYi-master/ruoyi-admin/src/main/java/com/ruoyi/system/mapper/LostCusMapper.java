@@ -7,7 +7,7 @@ import com.ruoyi.system.domain.LostCus;
  * 流失客户信息Mapper接口
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public interface LostCusMapper 
 {
@@ -58,4 +58,6 @@ public interface LostCusMapper
      * @return 结果
      */
     public int deleteLostCusByIds(String[] ids);
+    
+    List<LostCus> selectLostAll();
 }

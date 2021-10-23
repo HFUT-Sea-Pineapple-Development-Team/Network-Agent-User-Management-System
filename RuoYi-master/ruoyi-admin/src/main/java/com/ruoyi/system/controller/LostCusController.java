@@ -23,7 +23,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 流失客户信息Controller
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 @Controller
 @RequestMapping("/system/cus")
@@ -41,6 +41,14 @@ public class LostCusController extends BaseController
         return prefix + "/cus";
     }
 
+    @GetMapping("/analysis")
+    public String analysis(ModelMap mmap)
+    {
+    	List list = lostCusService.selectLostAll();
+    	mmap.put("analysisdis",list);
+        return prefix + "/analysis";
+    }
+    
     /**
      * 查询流失客户信息列表
      */

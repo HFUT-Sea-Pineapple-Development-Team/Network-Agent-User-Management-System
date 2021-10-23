@@ -12,7 +12,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 订单详情对象 order_details
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public class OrderDetails extends BaseEntity
 {
@@ -30,8 +30,13 @@ public class OrderDetails extends BaseEntity
     @Excel(name = "服务类型")
     private String serviceType;
 
-    /** 价格 */
-    @Excel(name = "价格")
+    /** 订单日期 */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "订单日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date orderDate;
+
+    /** 单价 */
+    @Excel(name = "单价")
     private BigDecimal price;
 
     /** 是否有效 */
@@ -86,6 +91,15 @@ public class OrderDetails extends BaseEntity
     public String getServiceType() 
     {
         return serviceType;
+    }
+    public void setOrderDate(Date orderDate) 
+    {
+        this.orderDate = orderDate;
+    }
+
+    public Date getOrderDate() 
+    {
+        return orderDate;
     }
     public void setPrice(BigDecimal price) 
     {
@@ -166,6 +180,7 @@ public class OrderDetails extends BaseEntity
             .append("id", getId())
             .append("orderId", getOrderId())
             .append("serviceType", getServiceType())
+            .append("orderDate", getOrderDate())
             .append("price", getPrice())
             .append("isValid", getIsValid())
             .append("number", getNumber())
