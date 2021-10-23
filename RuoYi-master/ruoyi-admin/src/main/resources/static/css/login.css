@@ -24,7 +24,7 @@ body.signin {
 	margin-top:12%;
 	margin-right:5%;
 	margin-left:5%;
-	color:rgba(255,255,255,.95)
+	 color:rgba(227, 227, 227, 0.9) 
 }
 .signinpanel .logopanel {
 	float:none;
@@ -56,7 +56,11 @@ body.signin {
 	margin-top:15px
 }
 .signinpanel form {
-	background:rgba(255,255,255,.2);
+	/* background:rgba(255,255,255,.2); */
+	background: #373B44;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, rgba(55,59,68,0.2), rgba(255,255,255,.2));  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, rgba(55,59,68,0.2), rgba(255,255,255,.2)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	
 	border:1px solid rgba(255,255,255,.3);
 	-moz-box-shadow:0 3px 0 rgba(12,12,12,.03);
 	-webkit-box-shadow:0 3px 0 rgba(12,12,12,.03);
@@ -64,11 +68,39 @@ body.signin {
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
-	padding:30px
+ 	padding:30px 
+
 }
+
+.signinpanel form::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-ms-filter: blur(5px);
+	-o-filter: blur(5px);
+	filter: blur(5px);
+	z-index: -3;
+	margin: 15px;
+	
+	background-image: url(../img/login-background.jpg);
+	background-position: center top;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+
 .signup-footer {
 	border-top:solid 1px rgba(255,255,255,.3);
-	margin:150px 0;
+	margin:20px 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: right;
 	padding-top:15px
 }
 /* @media screen and (max-width:768px) {
@@ -118,66 +150,7 @@ a {
     font-size: 0.8rem;
 }
 
-.box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 1rem;
-	width:750px;
-	margin:10% auto 0;
-	color:rgba(255,255,255,.95)
-}
 
-.box form {
-    width: 100%;
-    max-width: 400px;
-    margin-top: 13%;
-}
-
-.box form h4 {
-    color: #eee;
-    font-weight: 100;
-    font-size: 1.3rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-
-
-
-.box form .acc input,
-.box form .btn {
-    outline: none;
-    display: block;
-    width: 100%;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #eee;
-    background-color: rgba(0,0,0,20%);
-    border:none;
-    border-radius: 2.5rem;
-    text-indent: 1rem;
-    transition: background-color .3s;
-}
-
-.box form .btn {
-    text-align: center;
-    border: 1px solid #eee;
-    background-color: transparent;
-}
-
-.box form .acc input::placeholder {
-    color: #bbb;
-}
-
-.box form .acc input:hover {
-    background-color: rgba(0,0,0,30%);
-}
-
-.box form .acc input:focus {
-    background-color: rgba(0,0,0,40%);
-}
 
 .fn label {
     font-size: 0.8rem;
