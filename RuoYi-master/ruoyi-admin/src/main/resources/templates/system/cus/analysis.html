@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('流失客户信息列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+
+                        <ul>
+                            <li>
+                                <label>客户id：</label>
+                                <input type="text" name="lostId"/>
+                            </li>
+                            <li>
+                                <label>流失时间：</label>
+                                <input type="text" name="lostTime"/>
+                            </li>
+                        </ul>
+
+            </div>
+
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:cus:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:cus:remove')}]];
+        var confirmLossDatas = [[${@dict.getType('sys_confirm_loss')}]];
+        var prefix = ctx + "system/cus";
+
+        $(function() {
+        	console.log([[${analysisdis}]])
+            var analysisdis = [[${analysisdis}]]
+            console.log(analysisdis.length)
+            console.log(analysisdis[0].orderDate)
+        });
+    </script>
+</body>
+</html>

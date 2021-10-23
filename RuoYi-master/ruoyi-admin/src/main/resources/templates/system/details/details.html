@@ -22,7 +22,11 @@
                                 </select>
                             </li>
                             <li>
-                                <label>价格：</label>
+                                <label>订单日期：</label>
+                                <input type="text" class="time-input" placeholder="请选择订单日期" name="orderDate"/>
+                            </li>
+                            <li>
+                                <label>单价：</label>
                                 <input type="text" name="price"/>
                             </li>
                             <li>
@@ -104,24 +108,12 @@
                     }
                 },
                 {
+                    field: 'orderDate',
+                    title: '订单日期'
+                },
+                {
                     field: 'price',
-                    title: '价格'
-                },
-                {
-                    field: 'number',
-                    title: '数量'
-                },
-                {
-                    field: 'total',
-                    title: '总价'
-                },
-                {
-                    field: 'resFlow',
-                    title: '剩余流量'
-                },
-                {
-                    field: 'resTime',
-                    title: '剩余时间'
+                    title: '单价'
                 },
                 {
                     field: 'isValid',
@@ -129,6 +121,22 @@
                     formatter: function(value, row, index) {
                        return $.table.selectDictLabel(isValidDatas, value);
                     }
+                },
+                {
+                    field: 'number',
+                    title: '数量'
+                },
+                {
+                    field: 'resFlow',
+                    title: '剩余流量'
+                },
+                {
+                    field: 'total',
+                    title: '总价'
+                },
+                {
+                    field: 'resTime',
+                    title: '剩余时间'
                 },
                 {
                     title: '操作',

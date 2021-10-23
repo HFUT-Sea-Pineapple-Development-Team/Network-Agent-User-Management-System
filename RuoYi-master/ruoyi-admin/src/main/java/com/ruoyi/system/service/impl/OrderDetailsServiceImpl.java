@@ -12,7 +12,7 @@ import com.ruoyi.common.core.text.Convert;
  * 订单详情Service业务层处理
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 @Service
 public class OrderDetailsServiceImpl implements IOrderDetailsService 
@@ -90,5 +90,11 @@ public class OrderDetailsServiceImpl implements IOrderDetailsService
     public int deleteOrderDetailsById(Long id)
     {
         return orderDetailsMapper.deleteOrderDetailsById(id);
+    }
+    
+    @Override
+    public List<OrderDetails> selectOrderDetailsAll()
+    {
+        return orderDetailsMapper.selectOrderDetailsAll();
     }
 }

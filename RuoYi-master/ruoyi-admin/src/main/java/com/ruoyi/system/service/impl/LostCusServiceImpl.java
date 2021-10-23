@@ -13,7 +13,7 @@ import com.ruoyi.common.core.text.Convert;
  * 流失客户信息Service业务层处理
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 @Service
 public class LostCusServiceImpl implements ILostCusService 
@@ -93,5 +93,11 @@ public class LostCusServiceImpl implements ILostCusService
     public int deleteLostCusById(Long id)
     {
         return lostCusMapper.deleteLostCusById(id);
+    }
+    
+    @Override
+    public List<LostCus> selectLostAll()
+    {
+        return lostCusMapper.selectLostAll();
     }
 }

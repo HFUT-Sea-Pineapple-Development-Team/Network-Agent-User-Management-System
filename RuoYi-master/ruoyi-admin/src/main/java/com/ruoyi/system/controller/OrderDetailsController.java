@@ -23,7 +23,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 订单详情Controller
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 @Controller
 @RequestMapping("/system/details")
@@ -41,6 +41,14 @@ public class OrderDetailsController extends BaseController
         return prefix + "/details";
     }
 
+    @GetMapping("/analysis")
+    public String analysis(ModelMap mmap)
+    {
+    	List<OrderDetails> list = orderDetailsService.selectOrderDetailsAll();
+    	mmap.put("analysisdis",list);
+        return prefix + "/analysis";
+    }
+    
     /**
      * 查询订单详情列表
      */

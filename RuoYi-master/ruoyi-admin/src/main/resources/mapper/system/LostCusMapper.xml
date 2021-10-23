@@ -12,13 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="cusEmail"    column="cus_email"    />
         <result property="contactTime"    column="contact_time"    />
         <result property="confirmLoss"    column="confirm_loss"    />
-        <result property="isValid"    column="is_valid"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateTime"    column="update_time"    />
     </resultMap>
 
     <sql id="selectLostCusVo">
-        select id, lost_id, lost_time, cus_phone, cus_email, contact_time, confirm_loss, is_valid, create_time, update_time from lost_cus
+        select id, lost_id, lost_time, cus_phone, cus_email, contact_time, confirm_loss, create_time, update_time from lost_cus
     </sql>
 
     <select id="selectLostCusList" parameterType="LostCus" resultMap="LostCusResult">
@@ -30,7 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cusEmail != null  and cusEmail != ''"> and cus_email = #{cusEmail}</if>
             <if test="contactTime != null "> and contact_time = #{contactTime}</if>
             <if test="confirmLoss != null  and confirmLoss != ''"> and confirm_loss = #{confirmLoss}</if>
-            <if test="isValid != null  and isValid != ''"> and is_valid = #{isValid}</if>
         </where>
     </select>
     
@@ -48,7 +46,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cusEmail != null and cusEmail != ''">cus_email,</if>
             <if test="contactTime != null">contact_time,</if>
             <if test="confirmLoss != null">confirm_loss,</if>
-            <if test="isValid != null">is_valid,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
          </trim>
@@ -59,7 +56,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cusEmail != null and cusEmail != ''">#{cusEmail},</if>
             <if test="contactTime != null">#{contactTime},</if>
             <if test="confirmLoss != null">#{confirmLoss},</if>
-            <if test="isValid != null">#{isValid},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
          </trim>
@@ -74,7 +70,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="cusEmail != null and cusEmail != ''">cus_email = #{cusEmail},</if>
             <if test="contactTime != null">contact_time = #{contactTime},</if>
             <if test="confirmLoss != null">confirm_loss = #{confirmLoss},</if>
-            <if test="isValid != null">is_valid = #{isValid},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
         </trim>
@@ -91,5 +86,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+    
+    <select id="selectLostAll" resultMap="LostCusResult">
+        select customer_order.order_date,order_details.service_type
+		from lost_cus,customer,customer_order,order_details
+		where lost_cus.lost_id = customer.id and 
+		customer.id = customer_order.cus_id and 
+		customer_order.id = order_details.order_id
+    </select>
 
 </mapper>

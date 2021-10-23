@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 查看客户联系人对象 customer_contact
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-23
  */
 public class CustomerContact extends BaseEntity
 {
