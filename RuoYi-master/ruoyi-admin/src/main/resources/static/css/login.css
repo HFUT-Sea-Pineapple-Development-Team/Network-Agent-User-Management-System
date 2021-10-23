@@ -1,8 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*111*/
 html {
-	height:100%
+    font-size: 16px;
+    height: 100%;
+    /* background: linear-gradient(120deg,rgb(6,129,140) 0%,rgb(16,70,115) 100%) no-repeat; */
 }
 body.signin {
 	height:auto;
+	width:auto;
 	background:url(../img/login-background.jpg) no-repeat center fixed;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -11,7 +21,9 @@ body.signin {
 }
 .signinpanel {
 	width:750px;
-	margin:10% auto 0;
+	margin-top:12%;
+	margin-right:5%;
+	margin-left:5%;
 	color:rgba(255,255,255,.95)
 }
 .signinpanel .logopanel {
@@ -59,12 +71,12 @@ body.signin {
 	margin:20px 0;
 	padding-top:15px
 }
-@media screen and (max-width:768px) {
+/* @media screen and (max-width:768px) {
 	.signinpanel,.signuppanel {
 	margin:0 auto;
 	width:380px!important;
 	padding:20px
-}
+} */
 .signinpanel form {
 	margin-top:20px
 }
@@ -84,67 +96,7 @@ body.signin {
 	width:auto
 }
 }
-/*
-登录界面check样式
-*/
-.checkbox-custom {
-    position: relative;
-    padding: 0 15px 0 25px;
-    margin-bottom: 7px;
-    display: inline-block;
-}
-/*
-将初始的checkbox的样式改变
-*/
-.checkbox-custom input[type="checkbox"] {
-    opacity: 0; /*将初始的checkbox隐藏起来*/
-    position: absolute;
-    cursor: pointer;
-    z-index: 2;
-    margin: -6px 0 0 0;
-    top: 50%;
-    left: 3px;
-}
-/*
-设计新的checkbox，位置
-*/
-.checkbox-custom label:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    margin-top: -9px;
-    width: 18px;
-    height: 17px;
-    display: inline-block;
-    border-radius: 2px;
-    border: 1px solid #bbb;
-    background: #fff;
-}
-/*
-点击初始的checkbox，将新的checkbox关联起来
-*/
-.checkbox-custom input[type="checkbox"]:checked +label:after {
-    position: absolute;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    content: "\e013";
-    top: 42%;
-    left: 3px;
-    margin-top: -5px;
-    font-size: 11px;
-    line-height: 1;
-    width: 16px;
-    height: 16px;
-    color: #333;
-}
-.checkbox-custom label {
-    cursor: pointer;
-    line-height: 1.2;
-    font-weight: normal; /*改变了rememberme的字体*/
-    margin-bottom: 0;
-    text-align: left;
-}
+
 
 .form-control, .form-control:focus, .has-error .form-control:focus,  .has-success .form-control:focus, .has-warning .form-control:focus,  .navbar-collapse, .navbar-form, .navbar-form-custom .form-control:focus,  .navbar-form-custom .form-control:hover, .open .btn.dropdown-toggle,  .panel, .popover, .progress, .progress-bar {
     box-shadow: none;
@@ -158,4 +110,221 @@ body.signin {
 
 .form-control:focus{
     border-color: #1ab394 !important;
+} */
+
+a {
+    text-decoration: none;
+    color: #eee;
+    font-size: 0.8rem;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+	width:750px;
+	margin:10% auto 0;
+	color:rgba(255,255,255,.95)
+}
+
+.box form {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 13%;
+}
+
+.box form h4 {
+    color: #eee;
+    font-weight: 100;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+
+
+.box form .acc input,
+.box form .btn {
+    outline: none;
+    display: block;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #eee;
+    background-color: rgba(0,0,0,20%);
+    border:none;
+    border-radius: 2.5rem;
+    text-indent: 1rem;
+    transition: background-color .3s;
+}
+
+.box form .btn {
+    text-align: center;
+    border: 1px solid #eee;
+    background-color: transparent;
+}
+
+.box form .acc input::placeholder {
+    color: #bbb;
+}
+
+.box form .acc input:hover {
+    background-color: rgba(0,0,0,30%);
+}
+
+.box form .acc input:focus {
+    background-color: rgba(0,0,0,40%);
+}
+
+.fn label {
+    font-size: 0.8rem;
+}
+
+.fn label input[type="checkbox"] {
+    display: none;
+}
+
+.fn label input[type="checkbox"] + span {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    padding: 2.3px;
+    border: 1px solid #eee;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.fn label input[type="checkbox"] +span > span {
+    float: left;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: #eee;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.fn label input[type="checkbox"]:checked +span {
+    border-color: #eee;
+}
+
+.fn label:hover input[type="checkbox"] +span > span {
+    opacity: .5;
+}
+
+.fn label input[type="checkbox"]:checked +span > span {
+    opacity: 1;
+}
+
+.fn,.login {
+    color: #eee;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem !important;
+}
+
+.login a,.login input {
+    overflow: hidden;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border: 1px solid #eee;
+    border-radius: 2.5rem;
+    margin: 0.5rem 0;
+    color: #eee;
+    background-color: transparent;
+    text-align: center;
+}
+
+.login a {
+    width: 40%;
+}
+
+.login input {
+    width: 60%;
+}
+
+.login span {
+    margin: 0.5rem;
+    font-size: 0.8rem;
+    line-height: 2.5rem;
+}
+
+.fn {
+    margin: 0 1rem;
+}
+
+.login {
+    margin: 0 2rem;
+}
+
+.reg {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,60%);
+    text-align: center;
+}
+
+.ccc {
+    transition: color .5s;
+}
+
+.ccc:hover {
+    color: #ccc;
+}
+
+.fff {
+    transition: color .3s,background-color .3s;
+}
+
+.fff:hover {
+    color: #333 !important;
+    background-color: rgba(255,255,255,80%) !important;
+}
+
+.signinpanel .row{
+	width: 90%;
+}
+
+.signinpanel .row .col-xs-8 form h4 {
+    color: #eee;
+    font-weight: 100;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+.signinpanel .row .col-xs-8 .acc input,
+.signinpanel .row .col-xs-8 .btn {
+    outline: none;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #eee;
+    background-color: rgba(0,0,0,20%);
+    border:none;
+    border-radius: 2.5rem;
+    text-indent: 1rem;
+    transition: background-color .3s;
+}
+
+.signinpanel .row .col-xs-8 .btn {
+    text-align: center;
+    border: 1px solid #eee;
+    background-color: transparent;
+}
+
+.signinpanel .row .col-xs-8 .acc input::placeholder {
+    color: #bbb;
+}
+
+.signinpanel .row .col-xs-8 .acc input:hover {
+    background-color: rgba(0,0,0,30%);
+}
+
+.signinpanel .row .col-xs-8 .acc input:focus {
+    background-color: rgba(0,0,0,40%);
 }
