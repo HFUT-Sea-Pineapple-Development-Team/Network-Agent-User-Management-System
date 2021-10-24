@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 客户开发计划对象 t_cuv_dev_plan
  * 
  * @author ruoyi
- * @date 2021-10-22
+ * @date 2021-10-24
  */
 public class TCuvDevPlan extends BaseEntity
 {
