@@ -92,7 +92,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from lost_cus,customer,customer_order,order_details
 		where lost_cus.lost_id = customer.id and 
 		customer.id = customer_order.cus_id and 
-		customer_order.id = order_details.order_id
+		customer_order.id = order_details.order_id and
+		customer.user_final = customer_order.order_date
     </select>
 
 </mapper>
