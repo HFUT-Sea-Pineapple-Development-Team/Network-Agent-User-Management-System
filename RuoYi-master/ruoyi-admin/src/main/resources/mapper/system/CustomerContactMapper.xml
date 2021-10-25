@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectCustomerContactList" parameterType="CustomerContact" resultMap="CustomerContactResult">
         <include refid="selectCustomerContactVo"/>
         <where>  
-            <if test="contactName != null "> and contact_name like concat('%', #{contactName}, '%')</if>
+            <if test="contactName != null  and contactName != ''"> and contact_name like concat('%', #{contactName}, '%')</if>
             <if test="cusId != null "> and cus_id = #{cusId}</if>
             <if test="contactTime != null "> and contact_time = #{contactTime}</if>
             <if test="contactStyle != null  and contactStyle != ''"> and contact_style = #{contactStyle}</if>
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into customer_contact
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
-            <if test="contactName != null">contact_name,</if>
+            <if test="contactName != null and contactName != ''">contact_name,</if>
             <if test="cusId != null">cus_id,</if>
             <if test="contactTime != null">contact_time,</if>
             <if test="overview != null">overview,</if>
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">#{id},</if>
-            <if test="contactName != null">#{contactName},</if>
+            <if test="contactName != null and contactName != ''">#{contactName},</if>
             <if test="cusId != null">#{cusId},</if>
             <if test="contactTime != null">#{contactTime},</if>
             <if test="overview != null">#{overview},</if>
@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateCustomerContact" parameterType="CustomerContact">
         update customer_contact
         <trim prefix="SET" suffixOverrides=",">
-            <if test="contactName != null">contact_name = #{contactName},</if>
+            <if test="contactName != null and contactName != ''">contact_name = #{contactName},</if>
             <if test="cusId != null">cus_id = #{cusId},</if>
             <if test="contactTime != null">contact_time = #{contactTime},</if>
             <if test="overview != null">overview = #{overview},</if>

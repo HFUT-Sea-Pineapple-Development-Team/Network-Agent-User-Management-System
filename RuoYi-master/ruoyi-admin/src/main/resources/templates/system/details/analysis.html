@@ -32,10 +32,11 @@ var myChart = echarts.init(dom);
 var app = {};
 
 var option;
+var datatime[8][12] = {0};
 
         var prefix = ctx + "system/details";
 
-        $(function() {
+        success:function (datatime) {
 
             var analysisdis = [[${analysisdis}]]
 
@@ -383,15 +384,15 @@ var option;
         		      name: 'Monthly',
         		      type: 'line',
         		      stack: 'Total',
-        		      data: [data[0][0], data[0][1], data[0][2], data[0][3],data[0][4], data[0][5],
-        		    	  data[0][6], data[0][7],data[0][8], data[0][9],data[0][10], data[0][11]]
+        		      data: [datatime[0][0], datatime[0][1], datatime[0][2], datatime[0][3],datatime[0][4], datatime[0][5],
+        		    	  datatime[0][6], datatime[0][7],datatime[0][8], datatime[0][9],datatime[0][10], datatime[0][11]]
         		    },
         		    {
         		      name: 'Quarterly',
         		      type: 'line',
         		      stack: 'Total',
-        		      data: [data[1][0], data[1][1], data[1][2], data[1][3],data[1][4], data[1][5],
-        		    	  data[1][6], data[1][7],data[1][8], data[1][9],data[1][10], data[1][11]]
+        		      data: [datatime[1][0], datatime[1][1], datatime[1][2], datatime[1][3],datatime[1][4], datatime[1][5],
+        		    	  datatime[1][6], datatime[1][7],datatime[1][8], datatime[1][9],datatime[1][10], datatime[1][11]]
         		    },
         		    {
           		      name: 'HalfYearly',

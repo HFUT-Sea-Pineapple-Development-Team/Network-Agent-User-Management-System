@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 查看客户联系人对象 customer_contact
  * 
  * @author ruoyi
- * @date 2021-10-23
+ * @date 2021-10-24
  */
 public class CustomerContact extends BaseEntity
 {
@@ -22,7 +22,7 @@ public class CustomerContact extends BaseEntity
 
     /** 客服姓名 */
     @Excel(name = "客服姓名")
-    private Long contactName;
+    private String contactName;
 
     /** 用户id */
     @Excel(name = "用户id")
@@ -60,12 +60,12 @@ public class CustomerContact extends BaseEntity
     {
         return id;
     }
-    public void setContactName(Long contactName) 
+    public void setContactName(String contactName) 
     {
         this.contactName = contactName;
     }
 
-    public Long getContactName() 
+    public String getContactName() 
     {
         return contactName;
     }
